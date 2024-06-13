@@ -1,9 +1,9 @@
  <div align="center">
    
-  # Godot 
+  # Ping Pong
   
 
-Introduccion al motor de juegos recreando el juego de ping pong
+Introduccion al motor de juegos Godot
 
 
  </div>

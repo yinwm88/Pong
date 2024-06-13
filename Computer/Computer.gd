@@ -1,11 +1,13 @@
 extends CharacterBody2D
-var speed = 450
+var speed = 415
 var ball 
 
 func _ready():
 		ball = get_parent().get_node("ball")
 	
 func _physics_process(delta):
+		if abs(ball.position.y - position.y) < 10:
+			return
 	
 		if ball.position.y < position.y:
 				velocity.y = -1

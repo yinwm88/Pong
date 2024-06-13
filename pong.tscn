@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b35yndnptkl5m"]
+[gd_scene load_steps=12 format=3 uid="uid://b35yndnptkl5m"]
 
 [ext_resource type="PackedScene" uid="uid://b57qmhbsrn50k" path="res://Computer/Computer.tscn" id="1_3fc0p"]
 [ext_resource type="Script" path="res://pong.gd" id="1_wb7jd"]
@@ -6,12 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://cci1coobui2oh" path="res://ball/ball.tscn" id="3_m85x0"]
 [ext_resource type="Texture2D" uid="uid://boehhtlejlloa" path="res://assets/wall-horizontal.png" id="4_ls7gx"]
 [ext_resource type="Texture2D" uid="uid://drymhk8ky2dwg" path="res://assets/wall-vertical.png" id="6_5ngnt"]
+[ext_resource type="Texture2D" uid="uid://c20axail1jdum" path="res://assets/middle-line.png" id="7_6g0ih"]
+[ext_resource type="FontFile" uid="uid://dpwl4pj71kxup" path="res://assets/alarm clock.ttf" id="8_0mm53"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2fmh"]
 size = Vector2(1186, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tp2k1"]
 size = Vector2(20, 613)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0onor"]
+font = ExtResource("8_0mm53")
+font_size = 60
 
 [node name="pong" type="Node2D"]
 script = ExtResource("1_wb7jd")
@@ -62,6 +68,28 @@ texture = ExtResource("6_5ngnt")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="goalright"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_tp2k1")
+
+[node name="Middle-line" type="Sprite2D" parent="."]
+position = Vector2(640, 350)
+texture = ExtResource("7_6g0ih")
+
+[node name="player_score" type="Label" parent="."]
+offset_left = 573.0
+offset_top = 72.0
+offset_right = 613.0
+offset_bottom = 95.0
+text = "0"
+label_settings = SubResource("LabelSettings_0onor")
+horizontal_alignment = 1
+
+[node name="computer_score" type="Label" parent="."]
+offset_left = 669.0
+offset_top = 72.0
+offset_right = 709.0
+offset_bottom = 136.0
+text = "0"
+label_settings = SubResource("LabelSettings_0onor")
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="goalleft" to="." method="_on_goalleft_body_entered"]
 [connection signal="body_entered" from="goalright" to="." method="_on_goalright_body_entered"]

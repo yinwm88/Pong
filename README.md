@@ -3,7 +3,7 @@
   # Godot 
   
 
-Introduccion al motor de juegos recreado el juego de ping pong
+Introduccion al motor de juegos recreando el juego de ping pong
 
 
  </div>

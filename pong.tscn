@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://b35yndnptkl5m"]
+
+[ext_resource type="PackedScene" uid="uid://b57qmhbsrn50k" path="res://Computer/Computer.tscn" id="1_3fc0p"]
+[ext_resource type="Script" path="res://pong.gd" id="1_wb7jd"]
+[ext_resource type="PackedScene" uid="uid://dccewd1dvgrs6" path="res://player/player.tscn" id="2_hykor"]
+[ext_resource type="PackedScene" uid="uid://cci1coobui2oh" path="res://ball/ball.tscn" id="3_m85x0"]
+[ext_resource type="Texture2D" uid="uid://boehhtlejlloa" path="res://assets/wall-horizontal.png" id="4_ls7gx"]
+[ext_resource type="Texture2D" uid="uid://drymhk8ky2dwg" path="res://assets/wall-vertical.png" id="6_5ngnt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2fmh"]
+size = Vector2(1186, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp2k1"]
+size = Vector2(20, 613)
+
+[node name="pong" type="Node2D"]
+script = ExtResource("1_wb7jd")
+
+[node name="computer" parent="." instance=ExtResource("1_3fc0p")]
+position = Vector2(1180, 359)
+
+[node name="player" parent="." instance=ExtResource("2_hykor")]
+
+[node name="ball" parent="." instance=ExtResource("3_m85x0")]
+
+[node name="topwall" type="StaticBody2D" parent="."]
+position = Vector2(640, 40)
+
+[node name="Sprite2D" type="Sprite2D" parent="topwall"]
+texture = ExtResource("4_ls7gx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="topwall"]
+shape = SubResource("RectangleShape2D_f2fmh")
+
+[node name="bottomwall" type="StaticBody2D" parent="."]
+position = Vector2(640, 680)
+
+[node name="Sprite2D" type="Sprite2D" parent="bottomwall"]
+texture = ExtResource("4_ls7gx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottomwall"]
+shape = SubResource("RectangleShape2D_f2fmh")
+
+[node name="goalleft" type="Area2D" parent="."]
+position = Vector2(57, 360)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="goalleft"]
+texture = ExtResource("6_5ngnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goalleft"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tp2k1")
+
+[node name="goalright" type="Area2D" parent="."]
+position = Vector2(1221, 355)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="goalright"]
+texture = ExtResource("6_5ngnt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goalright"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tp2k1")
+
+[connection signal="body_entered" from="goalleft" to="." method="_on_goalleft_body_entered"]
+[connection signal="body_entered" from="goalright" to="." method="_on_goalright_body_entered"]
